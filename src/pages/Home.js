@@ -1,16 +1,10 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
-import { Skeleton, Switch, Card, Avatar, Menu } from "antd";
-import {
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import { Card, Avatar } from "antd";
 import "antd/dist/antd.css";
 import "../styles/Home.css";
 
 const { Meta } = Card;
-const { SubMenu } = Menu;
 
 const Home = () => {
   const [users, setUsers] = useState([]);

@@ -7,7 +7,7 @@
   height: 12vh;
   width: 100vw;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   font-size: 1.2rem;
   position: fixed;
@@ -19,7 +19,6 @@
 
 .navbar.active {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: #fff;
   border-bottom: none;
