@@ -1,5 +1,6 @@
 # react-app <br />
-A react app where Random Person API is used to fetch fake users. The data is displayed in the form of cards.
+A simple react app to get you familiar with ReactJS, where Random User Generator API(https://randomuser.me/) is used to fetch fake users. The data is displayed in the form of cards.
+API documentation: https://randomuser.me/documentation
 
 ## How to Contribute?
 - Take a look at the existing issues or create your own Issues
