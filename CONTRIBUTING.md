@@ -2,7 +2,7 @@
 
 - Select an issue and ask to be *assigned* to it.
 - **Star** the repository.
-- On the [GitHub page for this repository](https://github.com/PCCoE-Hacktoberfest-21/FRIDAY), click on the Button "**Fork**".
+- On the [GitHub page for this repository](https://github.com/PCCoE-Hacktoberfest-21/react-app), click on the Button "**Fork**".
    ![fork image](https://help.github.com/assets/images/help/repository/fork_button.jpg)
 - Create clone ***your forked repository*** on your local machine.
    ![code ui](https://docs.github.com/assets/images/help/repository/code-button.png)
@@ -10,7 +10,7 @@
     For example, run this command inside your terminal:
 
     ```bash
-    git clone https://github.com/<your-github-username>/FRIDAY.git
+    git clone https://github.com/<your-github-username>/react-app.git
     ```
 
     **Replace \<your-github-username\>!**
@@ -26,7 +26,7 @@
 - Before you make any changes, [keep your fork in sync](https://www.freecodecamp.org/news/how-to-sync-your-fork-with-the-original-git-repository/) to avoid merge conflicts:
 
     ```bash
-    git remote add upstream https://github.com/PCCoE-Hacktoberfest-21/FRIDAY.git
+    git remote add upstream https://github.com/PCCoE-Hacktoberfest-21/react-app.git
     git fetch upstream
     git pull upstream master
     git push
