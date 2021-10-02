@@ -7,7 +7,6 @@
   grid-gap: 2rem;
   -ms-grid-columns: (minmax(300px, 1fr))[auto-fit];
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  position: absolute;
 }
 
 .user-cards-section .user-card {
