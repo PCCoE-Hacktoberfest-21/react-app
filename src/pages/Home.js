@@ -31,13 +31,17 @@ const Home = () => {
       <div className="user-cards-section">
         {users.map((user, index) => (
           <>
-            <Card className="user-card">
-              <Meta
+            <Card className="user-card" hoverable style={{height:"230px"}}>
+              <Meta 
+                           
                 className="user-card-info"
-                avatar={<Avatar size={72} src={user.picture.medium} />}
+                avatar={<Avatar size={70} src={user.picture.medium} />}
                 title={user.name.first + " " + user.name.last}
-                description={"I live in " + user.location.city}
+                description={<div><h5>I live in {user.location.city}</h5><h5>I am {user.dob.age} years old</h5><h5>Contact me {user.phone}</h5></div>}
               />
+              <br/>
+              
+              
             </Card>
           </>
         ))}
