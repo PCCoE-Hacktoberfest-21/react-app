@@ -8,4 +8,4 @@ A react app where Random Person API is used to fetch fake users. The data is dis
 - Read the [Code of Conduct](CODE_OF_CONDUCT.md)
 - Create a Pull Request which will be reviewed by the maintainers and suggestions would be added to improve it (if needed)
 - Describe what your codeblock / function does in the PR.
-- Having difficulty in contributing? Read the [Contribution Guide](contributing.md) for a detailed explanation.a>
+- Having difficulty in contributing? Read the [Contribution Guide](contributing.md) for a detailed explanation.
