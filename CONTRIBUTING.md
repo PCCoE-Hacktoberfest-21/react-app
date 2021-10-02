@@ -16,6 +16,13 @@
     **Replace \<your-github-username\>!**
 
     Learn more about [forking](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) and [cloning a repo](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
+    
+- Once you clone the the repository, go into the folder on your machine and to install all the dependencies and packages run the following command:-
+
+   ```bash
+   npm install
+   ```
+
 - Before you make any changes, [keep your fork in sync](https://www.freecodecamp.org/news/how-to-sync-your-fork-with-the-original-git-repository/) to avoid merge conflicts:
 
     ```bash
@@ -33,7 +40,6 @@
     git checkout -b <branch-name>
     ```
 
-- Write your code in the Python file.
 - Add the changes with `git add`, `git commit` ([write a good commit message](https://chris.beams.io/posts/git-commit/), if possible):
 
     ```bash
