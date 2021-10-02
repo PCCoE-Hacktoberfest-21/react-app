@@ -28,8 +28,7 @@
     ```bash
     git remote add upstream https://github.com/PCCoE-Hacktoberfest-21/react-app.git
     git fetch upstream
-    git pull upstream master
-    git push
+    git pull upstream main
     ```
 
 - If you run into a **merge conflict**, you have to resolve the conflict. There are a lot of guides online, or you can try this one by [opensource.com](https://opensource.com/article/20/4/git-merge-conflict).
@@ -46,6 +45,11 @@
     git add -A
     git commit -m "<your message>"
     ```
+    
+- Pull the code from the upstream
+   
+  ```bash
+  git pull upstream main
 
 - Push the code *to your repository*.
 
