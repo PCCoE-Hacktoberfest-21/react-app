@@ -4,6 +4,7 @@ import { Card, Avatar } from "antd";
 import "antd/dist/antd.css";
 import "../styles/Home.css";
 
+
 const { Meta } = Card;
 
 const Home = () => {

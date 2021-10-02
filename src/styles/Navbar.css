@@ -1,5 +1,6 @@
 :root {
-    --yellow: #E0A42B;
+  --yellow: #E0A42B;
+  height: 100;
 }
 
 .navbar {
