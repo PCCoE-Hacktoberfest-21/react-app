@@ -12,7 +12,7 @@ function Footer() {
     return (
         <Box>
             <h1 style={{
-                color: "green",
+                color: "black",
                 textAlign: "center",
                 marginTop: "-50px"
             }}>
