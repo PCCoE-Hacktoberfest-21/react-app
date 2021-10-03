@@ -1,8 +1,9 @@
 import "../styles/scroll-button.css";
 import React, { useState } from 'react'
+import Image from "./download.jpeg";
 
 
-function Scroll_button() {
+function ScrollButton() {
 
     let [visible, setVisible] = useState(false)
 
@@ -22,15 +23,15 @@ function Scroll_button() {
     return (
         <>
             {
-                visible ? <button onClick={window.scrollTo({
+                visible ? <button onClick={() => {window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
-                })} className="button">
-                    <img src="src/2117-scroll-down-arrow1.png" alt="" />
+                })}} className="button">
+                    <img src={Image} alt="" className="img"/>
                 </button> : <></>
             }
         </>
     )
 }
 
-export default Scroll_button
+export default ScrollButton

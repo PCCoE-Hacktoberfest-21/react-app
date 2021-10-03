@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
-import Scroll_button from "./components/scroll-button";
+import ScrollButton from "./components/scroll-button";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <div>
           <Navbar />
           <Home />
-          <Scroll_button />
+          <ScrollButton />
         </div>
         <Footer />
       </Router>
