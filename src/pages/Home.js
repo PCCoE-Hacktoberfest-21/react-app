@@ -30,8 +30,8 @@ const Home = () => {
     <>
       <div className="user-cards-section">
         {users.map((user, index) => (
-          <>
-            <Card className="user-card" hoverable style={{height:"230px"}}>
+          <div key={index}>
+            <Card  className="user-card" hoverable style={{height:"230px"}}>
               <Meta 
                            
                 className="user-card-info"
@@ -43,7 +43,7 @@ const Home = () => {
               
               
             </Card>
-          </>
+          </div>
         ))}
       </div>
     </>
