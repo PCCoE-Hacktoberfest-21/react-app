@@ -4,9 +4,7 @@ const Footer = () => {
     return (
         <div>
             <footer className="footer-distributed">
-
                 
-
                 <div className="footer-left">
 
                     <p className="footer-links">

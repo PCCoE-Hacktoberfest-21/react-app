@@ -1,0 +1,18 @@
+.button{
+    position: fixed;
+    right:2%;
+    bottom:2%;
+    z-index: 1;
+    cursor: pointer;
+    transform: rotate(180deg);
+    background: transparent;
+    
+}
+
+
+.img{
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
