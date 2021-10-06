@@ -31,4 +31,10 @@
   color: rgba(255, 255, 255, 0.8);
   font-size: 18px;
 }
+
+select{
+  position: absolute;
+  top:20%;
+  right:20%;
+}
 /*# sourceMappingURL=Home.css.map */
