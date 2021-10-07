@@ -33,8 +33,13 @@
 }
 
 select{
-  position: absolute;
-  top:20%;
-  right:20%;
+  position: relative;
+  padding: 1rem;
+  top: 5rem;
+  left:80%;
+  border: none;
+  outline: none;
+  border-radius: 5%;
+  background-color:rgb(10, 230, 230);
 }
 /*# sourceMappingURL=Home.css.map */

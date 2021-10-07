@@ -10,7 +10,7 @@ const Home = () => {
 
   const [users, setUsers] = useState([]);
   const [renders, setRenders] = useState(0)
-  const [default_users, setDefault_users] = useState()
+  const [default_users, setDefault_users] = useState(0)
   let rule
 
   const getUsers = () => {
@@ -50,25 +50,39 @@ const Home = () => {
           setUsers(default_users)
         }
 
-        else if (rule === "ascending") {
-          setUsers(users.slice().sort((a, b) => a.dob.age - b.dob.age))
-        }
-
-        else if (rule === "descending") {
-          setUsers(users.slice().sort((a, b) => b.dob.age - a.dob.age))
-        }
-
         else {
           setRenders(renders + 1)
           if (renders === 1) {
-            setUsers(users.filter(FilterRules))
+            if (rule === "ascending") {
+              setUsers(users.slice().sort((a, b) => a.dob.age - b.dob.age))
+            }
+    
+            else if (rule === "descending") {
+              setUsers(users.slice().sort((a, b) => b.dob.age - a.dob.age))
+            }
+
+            else{
+              setUsers(users.filter(FilterRules))
+            }
+    
           }
           else {
-            setUsers(default_users.filter(FilterRules))
+            if (rule === "ascending") {
+              setUsers(default_users.slice().sort((a, b) => a.dob.age - b.dob.age))
+            }
+    
+            else if (rule === "descending") {
+              setUsers(default_users.slice().sort((a, b) => b.dob.age - a.dob.age))
+            }
+
+            else{
+              setUsers(default_users.filter(FilterRules))
+            }
+    
           }
         }
       }}>
-        <option value="null">no-rules</option>
+        <option value="null">No-rules</option>
         <option value="male">Only male</option>
         <option value="female">Only female</option>
         <option value="ascending">Age-ascending</option>
