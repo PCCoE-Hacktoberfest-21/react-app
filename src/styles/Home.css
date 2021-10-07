@@ -33,6 +33,7 @@
 }
 
 select{
+<<<<<<< HEAD
   position: relative;
   padding: 1rem;
   top: 5rem;
@@ -41,5 +42,10 @@ select{
   outline: none;
   border-radius: 5%;
   background-color:rgb(10, 230, 230);
+=======
+  position: absolute;
+  top:15%;
+  right:20%;
+>>>>>>> 48403f9baff385c1566c76458c6416bf9749fef3
 }
 /*# sourceMappingURL=Home.css.map */
