@@ -10,7 +10,7 @@ const Home = () => {
 
   const [users, setUsers] = useState([]);
   const [renders, setRenders] = useState(0)
-  const [default_users, setDefault_users] = useState(0)
+  const [default_users, setDefault_users] = useState([])
   let rule
 
   const getUsers = () => {
@@ -46,39 +46,41 @@ const Home = () => {
       <select id="Filter-rules" onChange={e => {
         rule = e.target.value
 
-        if (rule === "null"){
+        if (rule === "null") {
           setUsers(default_users)
         }
 
         else {
+
           setRenders(renders + 1)
+          
           if (renders === 1) {
             if (rule === "ascending") {
               setUsers(users.slice().sort((a, b) => a.dob.age - b.dob.age))
             }
-    
+
             else if (rule === "descending") {
               setUsers(users.slice().sort((a, b) => b.dob.age - a.dob.age))
             }
 
-            else{
+            else {
               setUsers(users.filter(FilterRules))
             }
-    
+
           }
           else {
             if (rule === "ascending") {
               setUsers(default_users.slice().sort((a, b) => a.dob.age - b.dob.age))
             }
-    
+
             else if (rule === "descending") {
               setUsers(default_users.slice().sort((a, b) => b.dob.age - a.dob.age))
             }
 
-            else{
+            else {
               setUsers(default_users.filter(FilterRules))
             }
-    
+
           }
         }
       }}>
