@@ -32,10 +32,13 @@
   font-size: 18px;
 }
 
+.home{
+  margin-top: 20vh;
+}
+
 select{
   position: relative;
   padding: 2%;
-  top: 5em;
   left:80%;
   border: none;
   outline: none;

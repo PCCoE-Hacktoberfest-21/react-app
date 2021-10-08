@@ -42,7 +42,7 @@ const Home = () => {
   }
 
   return (
-    <>
+    <div className="home">
       <select id="Filter-rules" onChange={e => {
         rule = e.target.value
 
@@ -105,7 +105,7 @@ const Home = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
