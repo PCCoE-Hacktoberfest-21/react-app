@@ -9,11 +9,9 @@ function App() {
   return (
     <>
       <Router>
-        <div>
-          <Navbar />
-          <Home />
-          <ScrollButton />
-        </div>
+        <Navbar />
+        <Home />
+        <ScrollButton />
         <Footer />
       </Router>
     </>

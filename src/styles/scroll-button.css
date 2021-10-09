@@ -4,14 +4,15 @@
     bottom:2%;
     z-index: 1;
     cursor: pointer;
-    transform: rotate(180deg);
     background: transparent;
-    
+    border: none;
+    outline:none;
 }
 
 
 .img{
     background: transparent;
+    transform: rotate(180deg);
     width: 30px;
     height: 30px;
     border-radius: 50%;

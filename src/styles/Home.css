@@ -31,4 +31,18 @@
   color: rgba(255, 255, 255, 0.8);
   font-size: 18px;
 }
+
+.home{
+  margin-top: 20vh;
+}
+
+select{
+  position: relative;
+  padding: 2%;
+  left:80%;
+  border: none;
+  outline: none;
+  border-radius: 5%;
+  background-color:rgb(10, 230, 230);
+}
 /*# sourceMappingURL=Home.css.map */
