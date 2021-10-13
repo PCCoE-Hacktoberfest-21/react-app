@@ -17,7 +17,7 @@
 
     Learn more about [forking](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) and [cloning a repo](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
     
-- Once you clone the the repository, go into the folder on your machine and to install all the dependencies and packages run the following command:-
+- Once you clone the the repository, go into the folder by running ``` cd react-app ``` command inside your terminal and to install all the dependencies and packages run the following command:-
 
    ```bash
    npm install
