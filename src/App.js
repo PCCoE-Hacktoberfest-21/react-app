@@ -4,17 +4,15 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import ScrollButton from "./components/scroll-button";
-import { useState } from "react";
-import PreLoader from "./components/PreLoader";
 
 function App() {
-  const [isLoading, setisLoading] = useState(true);
+  // const data = { setisLoading };
   return (
     <>
       <Router>
-        {isLoading ? <PreLoader /> : ""}
+        {/* {isLoading ? <PreLoader /> : ""} */}
         <Navbar />
-        <Home setisLoading={setisLoading} />
+        <Home />
         <ScrollButton />
         <Footer />
       </Router>
