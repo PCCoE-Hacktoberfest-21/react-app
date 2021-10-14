@@ -8,7 +8,7 @@ import "../styles/Home.css";
 
 const { Meta } = Card;
 
-const Home = () => {
+const Home = (props) => {
   const [users, setUsers] = useState([]);
   const [renders, setRenders] = useState(0);
   const [default_users, setDefault_users] = useState([]);
@@ -19,14 +19,17 @@ const Home = () => {
       (response) => {
         setDefault_users(response.data.results);
         setUsers(response.data.results);
+        props.setisLoading(false);
       },
       (error) => {
         console.log(error);
+        props.setisLoading(false);
       }
     );
   };
 
   useEffect(() => {
+    props.setisLoading(true);
     Aos.init({ duration: 1000 });
     document.title = "Random-Users-Home";
     getUsers();
