@@ -14,29 +14,24 @@ const Home = (props) => {
   const [default_users, setDefault_users] = useState([]);
   let rule;
 
-  const getUsers = () => {
-    props.setisLoading(true);
-    axios.get("https://randomuser.me/api/?results=30&nat=us").then(
-      (response) => {
-        setDefault_users(response.data.results);
-        setUsers(response.data.results);
-        props.setisLoading(false);
-      },
-      (error) => {
-        console.log(error);
-        props.setisLoading(false);
-      }
-    );
-  };
-
   useEffect(() => {
-    const abortController = new AbortController();
+    const getUsers = () => {
+      props.setisLoading(true);
+      axios.get("https://randomuser.me/api/?results=30&nat=us").then(
+        (response) => {
+          setDefault_users(response.data.results);
+          setUsers(response.data.results);
+          props.setisLoading(false);
+        },
+        (error) => {
+          console.log(error);
+          props.setisLoading(false);
+        }
+      );
+    };
     Aos.init({ duration: 1000 });
     document.title = "Random-Users-Home";
     getUsers();
-    return function cleanup() {
-      abortController.abort();
-    };
   }, []);
 
   const FilterRules = (value) => {
