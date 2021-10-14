@@ -15,6 +15,7 @@ const Home = (props) => {
   let rule;
 
   const getUsers = () => {
+    props.setisLoading(true);
     axios.get("https://randomuser.me/api/?results=30&nat=us").then(
       (response) => {
         setDefault_users(response.data.results);
@@ -29,10 +30,13 @@ const Home = (props) => {
   };
 
   useEffect(() => {
-    props.setisLoading(true);
+    const abortController = new AbortController();
     Aos.init({ duration: 1000 });
     document.title = "Random-Users-Home";
     getUsers();
+    return function cleanup() {
+      abortController.abort();
+    };
   }, []);
 
   const FilterRules = (value) => {
