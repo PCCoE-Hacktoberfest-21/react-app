@@ -48,46 +48,56 @@ const Home = (props) => {
     <>
       {isLoading ? <PreLoader /> : ""}
       <div className="home">
-        <select
-          id="Filter-rules"
-          onChange={(e) => {
-            rule = e.target.value;
+        <div className="select-filter">
+          <select
+            id="Filter-rules"
+            onChange={(e) => {
+              rule = e.target.value;
 
-            if (rule === "null") {
-              setUsers(default_users);
-            } else {
-              setRenders(renders + 1);
-
-              if (renders === 1) {
-                if (rule === "ascending") {
-                  setUsers(users.slice().sort((a, b) => a.dob.age - b.dob.age));
-                } else if (rule === "descending") {
-                  setUsers(users.slice().sort((a, b) => b.dob.age - a.dob.age));
-                } else {
-                  setUsers(users.filter(FilterRules));
-                }
+              if (rule === "null") {
+                setUsers(default_users);
               } else {
-                if (rule === "ascending") {
-                  setUsers(
-                    default_users.slice().sort((a, b) => a.dob.age - b.dob.age)
-                  );
-                } else if (rule === "descending") {
-                  setUsers(
-                    default_users.slice().sort((a, b) => b.dob.age - a.dob.age)
-                  );
+                setRenders(renders + 1);
+
+                if (renders === 1) {
+                  if (rule === "ascending") {
+                    setUsers(
+                      users.slice().sort((a, b) => a.dob.age - b.dob.age)
+                    );
+                  } else if (rule === "descending") {
+                    setUsers(
+                      users.slice().sort((a, b) => b.dob.age - a.dob.age)
+                    );
+                  } else {
+                    setUsers(users.filter(FilterRules));
+                  }
                 } else {
-                  setUsers(default_users.filter(FilterRules));
+                  if (rule === "ascending") {
+                    setUsers(
+                      default_users
+                        .slice()
+                        .sort((a, b) => a.dob.age - b.dob.age)
+                    );
+                  } else if (rule === "descending") {
+                    setUsers(
+                      default_users
+                        .slice()
+                        .sort((a, b) => b.dob.age - a.dob.age)
+                    );
+                  } else {
+                    setUsers(default_users.filter(FilterRules));
+                  }
                 }
               }
-            }
-          }}
-        >
-          <option value="null">No-rules</option>
-          <option value="male">Only male</option>
-          <option value="female">Only female</option>
-          <option value="ascending">Age-ascending</option>
-          <option value="descending">Age-descending</option>
-        </select>
+            }}
+          >
+            <option value="null">Filter</option>
+            <option value="male">Only male</option>
+            <option value="female">Only female</option>
+            <option value="ascending">Age-ascending</option>
+            <option value="descending">Age-descending</option>
+          </select>
+        </div>
         <div className="user-cards-section">
           {users.map((user, index) => (
             <div key={index}>

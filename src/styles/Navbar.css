@@ -3,7 +3,10 @@
 }
 
 .navbar {
-  background-color: #fff;
+  background-color: #ffffff;
+  background-image: radial-gradient(rgba(0, 98, 255, 1) 0.5px, #f7f7f7 0.5px);
+  background-size: 10px 10px;
+  background-attachment: fixed;
   height: 15vh;
   width: 100vw;
   display: flex;
@@ -20,7 +23,8 @@
 .navbar.active {
   display: flex;
   align-items: center;
-  background-color: #fff;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 98, 255)), to(rgba(97, 239, 255)));
+  background: linear-gradient(90deg, rgba(0, 98, 255) 0%, rgba(97, 239, 255) 100%);
   border-bottom: none;
   height: 10vh;
   box-shadow: 0 2px 15px -2px rgb(0 0 0 / 20%);
@@ -32,7 +36,7 @@
 
 .logo-text {
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 500;
   position: relative;
   font-family: 'Teko', sans-serif;
 }
