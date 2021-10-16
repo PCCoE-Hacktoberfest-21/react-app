@@ -114,6 +114,35 @@
 
 /* End of Custom Scroll-bar styles */
 
+/*PreLoader */
+
+.preloader {
+  position: fixed;
+  display: block;
+  width: 100wh;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(147, 224, 235, 0.863);
+  z-index: 999;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preloader img {
+  height: auto;
+  width: 20%;
+}
+.preloader img::selection {
+  background: transparent;
+}
+
+/*End of Preloader */
+
 /* Media Queries */
 
 @media (max-width: 600px) {

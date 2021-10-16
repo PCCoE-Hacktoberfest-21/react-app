@@ -6,9 +6,11 @@ import Footer from "./components/Footer";
 import ScrollButton from "./components/scroll-button";
 
 function App() {
+  // const data = { setisLoading };
   return (
     <>
       <Router>
+        {/* {isLoading ? <PreLoader /> : ""} */}
         <Navbar />
         <Home />
         <ScrollButton />

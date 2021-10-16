@@ -5,11 +5,13 @@ import axios from "axios";
 import { Card, Avatar } from "antd";
 import "antd/dist/antd.css";
 import "../styles/Home.css";
+import PreLoader from "../components/PreLoader";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const { Meta } = Card;
 
-const Home = () => {
+const Home = (props) => {
+  const [isLoading, setisLoading] = useState(true);
   const [users, setUsers] = useState([]);
   const [renders, setRenders] = useState(0);
   const [default_users, setDefault_users] = useState([]);
@@ -19,33 +21,34 @@ const Home = () => {
     axios.get("https://randomuser.me/api/?results=30&nat=us").then(
       (response) => {
         if (renders === 0) {
+          setRenders(renders + 1)
           setDefault_users(response.data.results);
           setUsers(response.data.results);
-        }
-        else {
-          if (renders === 0) {
-            setRenders(renders + 1)
-            setDefault_users([...users, response.data.results]);
-            setUsers([...users, response.data.results]);
-          }
+          setisLoading(false);
         }
       },
       (error) => {
-        console.log(error);
+        if (renders === 0) {
+          setRenders(renders + 1)
+          setDefault_users(response.data.results);
+          setUsers(response.data.results);
+          console.log(error);
+          setisLoading(false);
+        }
       }
     );
-    };
-
+  };
   useEffect(() => {
     Aos.init({ duration: 1000 });
     document.title = "Random-Users-Home";
-    getUsers()
+    setisLoading(true);
+    getUsers();
     window.addEventListener('scroll', () => {
       if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
         getUsers()
       }
     });
-  }, [getUsers]);
+  }, []);
 
   const FilterRules = (value) => {
     if (rule === "male" && value.gender === "male") {
@@ -56,49 +59,50 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
-      <select
-        id="Filter-rules"
-        onChange={(e) => {
-          rule = e.target.value;
+    <>
+      {isLoading ? <PreLoader /> : ""}
+      <div className="home">
+        <select
+          id="Filter-rules"
+          onChange={(e) => {
+            rule = e.target.value;
 
-          if (rule === "null") {
-            setUsers(default_users);
-          } else {
-            setRenders(renders + 1);
-
-            if (renders === 1) {
-              if (rule === "ascending") {
-                setUsers(users.slice().sort((a, b) => a.dob.age - b.dob.age));
-              } else if (rule === "descending") {
-                setUsers(users.slice().sort((a, b) => b.dob.age - a.dob.age));
-              } else {
-                setUsers(users.filter(FilterRules));
-              }
+            if (rule === "null") {
+              setUsers(default_users);
             } else {
-              if (rule === "ascending") {
-                setUsers(
-                  default_users.slice().sort((a, b) => a.dob.age - b.dob.age)
-                );
-              } else if (rule === "descending") {
-                setUsers(
-                  default_users.slice().sort((a, b) => b.dob.age - a.dob.age)
-                );
+              setRenders(renders + 1);
+
+              if (renders === 1) {
+                if (rule === "ascending") {
+                  setUsers(users.slice().sort((a, b) => a.dob.age - b.dob.age));
+                } else if (rule === "descending") {
+                  setUsers(users.slice().sort((a, b) => b.dob.age - a.dob.age));
+                } else {
+                  setUsers(users.filter(FilterRules));
+                }
               } else {
-                setUsers(default_users.filter(FilterRules));
+                if (rule === "ascending") {
+                  setUsers(
+                    default_users.slice().sort((a, b) => a.dob.age - b.dob.age)
+                  );
+                } else if (rule === "descending") {
+                  setUsers(
+                    default_users.slice().sort((a, b) => b.dob.age - a.dob.age)
+                  );
+                } else {
+                  setUsers(default_users.filter(FilterRules));
+                }
               }
             }
-          }
-        }}
-      >
-        <option value="null">No-rules</option>
-        <option value="male">Only male</option>
-        <option value="female">Only female</option>
-        <option value="ascending">Age-ascending</option>
-        <option value="descending">Age-descending</option>
-      </select>
-
-      <InfiniteScroll
+          }}
+        >
+          <option value="null">No-rules</option>
+          <option value="male">Only male</option>
+          <option value="female">Only female</option>
+          <option value="ascending">Age-ascending</option>
+          <option value="descending">Age-descending</option>
+        </select>
+        <InfiniteScroll
         dataLength={default_users.length}
         next={getUsers}
         hasMore={true}
@@ -106,7 +110,7 @@ const Home = () => {
         scrollableTarget="scrollableDiv"
       >
         <div className="user-cards-section">
-        {users.map((user, index) => (
+          {users.map((user, index) => (
             <div key={index}>
               <Card
                 className="user-card"
@@ -129,12 +133,11 @@ const Home = () => {
                 <br />
               </Card>
             </div>
-        ))}
+          ))}
         </div>
-      </InfiniteScroll>
-
-
-    </div>
+        </InfiniteScroll>
+      </div>
+    </>
   );
 };
 
