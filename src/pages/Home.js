@@ -17,20 +17,13 @@ const Home = (props) => {
   const [default_users, setDefault_users] = useState([]);
   let rule;
 
-  const getUsers = Fetchmore => {
+  const getUsers = () => {
     axios.get("https://randomuser.me/api/?results=30&nat=us").then(
       (response) => {
-        if(Fetchmore === false){
           setDefault_users(response.data.results);
           setUsers(response.data.results);
           setisLoading(false);
-        }
-        else{
-          setDefault_users(default_users.concat(response.data.results));
-          setUsers(users.concat(response.data.results));
-          setisLoading(false);
-        }
-        },
+      },
       (error) => {
         if (renders === 0) {
           setRenders(renders + 1)
@@ -40,17 +33,27 @@ const Home = (props) => {
       }
     );
   };
+
+  const getmoreUsers = () => {
+    axios.get("https://randomuser.me/api/?results=30&nat=us").then(
+      (response) => {
+        setDefault_users([...default_users ,response.data.results]);
+        setUsers([...users ,response.data.results]);
+        setisLoading(false);
+      },
+      (error) => {
+        console.log(error);
+        setisLoading(false);
+      }
+    );
+  };
+
   useEffect(() => {
     Aos.init({ duration: 1000 });
     document.title = "Random-Users-Home";
     setisLoading(true);
-    getUsers(false);
-    window.addEventListener('scroll', () => {
-      if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-        getUsers(true)
-      }
-    });
-  },[]);
+    getUsers();
+  }, []);
 
   const FilterRules = (value) => {
     if (rule === "male" && value.gender === "male") {
@@ -72,8 +75,8 @@ const Home = (props) => {
             if (rule === "null") {
               if (renders === 1) {
                 setRenders(0);
-              setUsers(default_users);
-            } else if (renders === 0) {
+                setUsers(default_users);
+              } else if (renders === 0) {
                 if (rule === "ascending") {
                   setUsers(users.slice().sort((a, b) => a.dob.age - b.dob.age));
                 } else if (rule === "descending") {
@@ -104,38 +107,37 @@ const Home = (props) => {
           <option value="descending">Age-descending</option>
         </select>
         <InfiniteScroll
-        dataLength={default_users.length}
-        next={getUsers}
-        hasMore={default_users.length !== 30}
-        loader={<h4>Loading...</h4>}
-        scrollableTarget="scrollableDiv"
-      >
-        <div className="user-cards-section">
-          {users.map((user, index) => (
-            <div key={index}>
-              <Card
-                className="user-card"
-                hoverable
-                style={{ height: "230px" }}
-                data-aos="fade-up"
-              >
-                <Meta
-                  className="user-card-info"
-                  avatar={<Avatar size={70} src={user.picture.medium} />}
-                  title={user.name.first + " " + user.name.last}
-                  description={
-                    <div>
-                      <h5>I live in {user.location.city}</h5>
-                      <h5>I am {user.dob.age} years old</h5>
-                      <h5>Contact me {user.phone}</h5>
-                    </div>
-                  }
-                />
-                <br />
-              </Card>
-            </div>
-          ))}
-        </div>
+          dataLength={default_users.length}
+          next={getmoreUsers}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}
+        >
+          <div className="user-cards-section">
+            {users.map((user, index) => (
+              <div key={index}>
+                <Card
+                  className="user-card"
+                  hoverable
+                  style={{ height: "230px" }}
+                  data-aos="fade-up"
+                >
+                  <Meta
+                    className="user-card-info"
+                    avatar={<Avatar size={70} src={user.picture.medium} />}
+                    title={user.name.first + " " + user.name.last}
+                    description={
+                      <div>
+                        <h5>I live in {user.location.city}</h5>
+                        <h5>I am {user.dob.age} years old</h5>
+                        <h5>Contact me {user.phone}</h5>
+                      </div>
+                    }
+                  />
+                  <br />
+                </Card>
+              </div>
+            ))}
+          </div>
         </InfiniteScroll>
       </div>
     </>
