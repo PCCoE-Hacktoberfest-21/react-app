@@ -30,8 +30,6 @@ const Home = (props) => {
       (error) => {
         if (renders === 0) {
           setRenders(renders + 1)
-          setDefault_users(response.data.results);
-          setUsers(response.data.results);
           console.log(error);
           setisLoading(false);
         }
@@ -70,9 +68,8 @@ const Home = (props) => {
             if (rule === "null") {
               setUsers(default_users);
             } else {
-              setRenders(renders + 1);
-
-              if (renders === 1) {
+              if (renders === 0) {
+                setRenders(renders + 1);
                 if (rule === "ascending") {
                   setUsers(users.slice().sort((a, b) => a.dob.age - b.dob.age));
                 } else if (rule === "descending") {
