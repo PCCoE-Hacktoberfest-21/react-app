@@ -17,16 +17,20 @@ const Home = (props) => {
   const [default_users, setDefault_users] = useState([]);
   let rule;
 
-  const getUsers = () => {
+  const getUsers = Fetchmore => {
     axios.get("https://randomuser.me/api/?results=30&nat=us").then(
       (response) => {
-        if (renders === 0) {
-          setRenders(renders + 1)
+        if(Fetchmore === false){
           setDefault_users(response.data.results);
           setUsers(response.data.results);
           setisLoading(false);
         }
-      },
+        else{
+          setDefault_users(default_users.concat(response.data.results));
+          setUsers(users.concat(response.data.results));
+          setisLoading(false);
+        }
+        },
       (error) => {
         if (renders === 0) {
           setRenders(renders + 1)
@@ -40,13 +44,13 @@ const Home = (props) => {
     Aos.init({ duration: 1000 });
     document.title = "Random-Users-Home";
     setisLoading(true);
-    getUsers();
+    getUsers(false);
     window.addEventListener('scroll', () => {
       if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-        getUsers()
+        getUsers(true)
       }
     });
-  }, []);
+  },[]);
 
   const FilterRules = (value) => {
     if (rule === "male" && value.gender === "male") {
@@ -66,10 +70,10 @@ const Home = (props) => {
             rule = e.target.value;
 
             if (rule === "null") {
+              if (renders === 1) {
+                setRenders(0);
               setUsers(default_users);
-            } else {
-              if (renders === 0) {
-                setRenders(renders + 1);
+            } else if (renders === 0) {
                 if (rule === "ascending") {
                   setUsers(users.slice().sort((a, b) => a.dob.age - b.dob.age));
                 } else if (rule === "descending") {
@@ -102,7 +106,7 @@ const Home = (props) => {
         <InfiniteScroll
         dataLength={default_users.length}
         next={getUsers}
-        hasMore={true}
+        hasMore={default_users.length !== 30}
         loader={<h4>Loading...</h4>}
         scrollableTarget="scrollableDiv"
       >
