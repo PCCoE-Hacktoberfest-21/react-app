@@ -5,6 +5,7 @@ import axios from "axios";
 import { Card, Avatar } from "antd";
 import "antd/dist/antd.css";
 import "../styles/Home.css";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const { Meta } = Card;
 
@@ -17,20 +18,35 @@ const Home = () => {
   const getUsers = () => {
     axios.get("https://randomuser.me/api/?results=30&nat=us").then(
       (response) => {
-        setDefault_users(response.data.results);
-        setUsers(response.data.results);
+        if (renders === 0) {
+          setDefault_users(response.data.results);
+          setUsers(response.data.results);
+        }
+        else {
+          if (renders === 0) {
+            setRenders(renders + 1)
+            setDefault_users([...users, response.data.results]);
+            setUsers([...users, response.data.results]);
+          }
+        }
       },
       (error) => {
         console.log(error);
       }
     );
-  };
+    // eslint-disable-next-line
+    };
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
     document.title = "Random-Users-Home";
-    getUsers();
-  }, []);
+    getUsers()
+    window.addEventListener('scroll', () => {
+      if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+        getUsers()
+      }
+    });
+  }, [getUsers]);
 
   const FilterRules = (value) => {
     if (rule === "male" && value.gender === "male") {
@@ -82,32 +98,43 @@ const Home = () => {
         <option value="ascending">Age-ascending</option>
         <option value="descending">Age-descending</option>
       </select>
-      <div className="user-cards-section">
+
+      <InfiniteScroll
+        dataLength={default_users.length}
+        next={getUsers}
+        hasMore={true}
+        loader={<h4>Loading...</h4>}
+        scrollableTarget="scrollableDiv"
+      >
+        <div className="user-cards-section">
         {users.map((user, index) => (
-          <div key={index}>
-            <Card
-              className="user-card"
-              hoverable
-              style={{ height: "230px" }}
-              data-aos="fade-up"
-            >
-              <Meta
-                className="user-card-info"
-                avatar={<Avatar size={70} src={user.picture.medium} />}
-                title={user.name.first + " " + user.name.last}
-                description={
-                  <div>
-                    <h5>I live in {user.location.city}</h5>
-                    <h5>I am {user.dob.age} years old</h5>
-                    <h5>Contact me {user.phone}</h5>
-                  </div>
-                }
-              />
-              <br />
-            </Card>
-          </div>
+            <div key={index}>
+              <Card
+                className="user-card"
+                hoverable
+                style={{ height: "230px" }}
+                data-aos="fade-up"
+              >
+                <Meta
+                  className="user-card-info"
+                  avatar={<Avatar size={70} src={user.picture.medium} />}
+                  title={user.name.first + " " + user.name.last}
+                  description={
+                    <div>
+                      <h5>I live in {user.location.city}</h5>
+                      <h5>I am {user.dob.age} years old</h5>
+                      <h5>Contact me {user.phone}</h5>
+                    </div>
+                  }
+                />
+                <br />
+              </Card>
+            </div>
         ))}
-      </div>
+        </div>
+      </InfiniteScroll>
+
+
     </div>
   );
 };
