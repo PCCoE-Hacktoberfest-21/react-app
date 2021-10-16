@@ -34,7 +34,6 @@ const Home = () => {
         console.log(error);
       }
     );
-    // eslint-disable-next-line
     };
 
   useEffect(() => {
