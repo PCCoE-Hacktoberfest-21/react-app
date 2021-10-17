@@ -35,6 +35,7 @@ const Home = (props) => {
   };
 
   const getmoreUsers = () => {
+    setisLoading(true)
     axios.get("https://randomuser.me/api/?results=30&nat=us").then(
       (response) => {
         setDefault_users([...default_users ,response.data.results]);
@@ -65,7 +66,6 @@ const Home = (props) => {
 
   return (
     <>
-      {isLoading ? <PreLoader /> : ""}
       <div className="home">
         <select
           id="Filter-rules"
@@ -106,11 +106,14 @@ const Home = (props) => {
           <option value="ascending">Age-ascending</option>
           <option value="descending">Age-descending</option>
         </select>
+
+        {isLoading ?  <PreLoader />: 
+        
         <InfiniteScroll
           dataLength={default_users.length}
           next={getmoreUsers}
           hasMore={true}
-          loader={<h4>Loading...</h4>}
+          loader={<></>}
         >
           <div className="user-cards-section">
             {users.map((user, index) => (
@@ -139,6 +142,8 @@ const Home = (props) => {
             ))}
           </div>
         </InfiniteScroll>
+        }
+
       </div>
     </>
   );
