@@ -20,9 +20,9 @@ const Home = (props) => {
   const getUsers = () => {
     axios.get("https://randomuser.me/api/?results=30&nat=us").then(
       (response) => {
-          setDefault_users(response.data.results);
-          setUsers(response.data.results);
-          setisLoading(false);
+        setDefault_users(response.data.results);
+        setUsers(response.data.results);
+        setisLoading(false);
       },
       (error) => {
         if (renders === 0) {
@@ -38,8 +38,8 @@ const Home = (props) => {
     setisLoading(true)
     axios.get("https://randomuser.me/api/?results=30&nat=us").then(
       (response) => {
-        setDefault_users([...default_users ,response.data.results]);
-        setUsers([...users ,response.data.results]);
+        setDefault_users(prevdata => [...prevdata, response.data.results]);
+        setUsers(prevdata => [...prevdata, response.data.results]);
         setisLoading(false);
       },
       (error) => {
@@ -52,9 +52,10 @@ const Home = (props) => {
   useEffect(() => {
     Aos.init({ duration: 1000 });
     document.title = "Random-Users-Home";
-    setisLoading(true);
     getUsers();
   }, []);
+
+  console.log(users)
 
   const FilterRules = (value) => {
     if (rule === "male" && value.gender === "male") {
@@ -107,8 +108,6 @@ const Home = (props) => {
           <option value="descending">Age-descending</option>
         </select>
 
-        {isLoading ?  <PreLoader />: 
-        
         <InfiniteScroll
           dataLength={default_users.length}
           next={getmoreUsers}
@@ -116,33 +115,33 @@ const Home = (props) => {
           loader={<></>}
         >
           <div className="user-cards-section">
-            {users.map((user, index) => (
-              <div key={index}>
-                <Card
-                  className="user-card"
-                  hoverable
-                  style={{ height: "230px" }}
-                  data-aos="fade-up"
-                >
-                  <Meta
-                    className="user-card-info"
-                    avatar={<Avatar size={70} src={user.picture.medium} />}
-                    title={user.name.first + " " + user.name.last}
-                    description={
-                      <div>
-                        <h5>I live in {user.location.city}</h5>
-                        <h5>I am {user.dob.age} years old</h5>
-                        <h5>Contact me {user.phone}</h5>
-                      </div>
-                    }
-                  />
-                  <br />
-                </Card>
-              </div>
-            ))}
+            {isLoading ? <PreLoader /> :
+              users.map((user, index) => (
+                <div key={index}>
+                  <Card
+                    className="user-card"
+                    hoverable
+                    style={{ height: "230px" }}
+                    data-aos="fade-up"
+                  >
+                    <Meta
+                      className="user-card-info"
+                      avatar={<Avatar size={70} src={user.picture.medium} />}
+                      title={user.name.first + " " + user.name.last}
+                      description={
+                        <div>
+                          <h5>I live in {user.location.city}</h5>
+                          <h5>I am {user.dob.age} years old</h5>
+                          <h5>Contact me {user.phone}</h5>
+                        </div>
+                      }
+                    />
+                    <br />
+                  </Card>
+                </div>
+              ))}
           </div>
         </InfiniteScroll>
-        }
 
       </div>
     </>
