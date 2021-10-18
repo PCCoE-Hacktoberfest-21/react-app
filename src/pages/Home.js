@@ -126,13 +126,13 @@ const Home = (props) => {
                   >
                     <Meta
                       className="user-card-info"
-                      avatar={<Avatar size={70} src={users.picture.medium} />}
-                      title={users.name.first + " " + users.name.last}
+                      avatar={<Avatar size={70} src={user.picture.medium} />}
+                      title={user.name.first + " " + user.name.last}
                       description={
                         <div>
-                          <h5>I live in {users.location.city}</h5>
-                          <h5>I am {users.dob.age} years old</h5>
-                          <h5>Contact me {users.phone}</h5>
+                          <h5>I live in {user.location.city}</h5>
+                          <h5>I am {user.dob.age} years old</h5>
+                          <h5>Contact me {user.phone}</h5>
                         </div>
                       }
                     />
