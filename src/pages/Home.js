@@ -38,8 +38,8 @@ const Home = (props) => {
     setisLoading(true)
     axios.get("https://randomuser.me/api/?results=30&nat=us").then(
       (response) => {
-        setDefault_users(prevdata => [...prevdata, response.data.results]);
-        setUsers(prevdata => [...prevdata, response.data.results]);
+        setDefault_users(prevdata => [...prevdata, ...response.data.results]);
+        setUsers(prevdata => [...prevdata, ...response.data.results]);
         setisLoading(false);
       },
       (error) => {
