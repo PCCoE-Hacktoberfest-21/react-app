@@ -53,6 +53,7 @@ const Home = (props) => {
     Aos.init({ duration: 1000 });
     document.title = "Random-Users-Home";
     getUsers();
+    // eslint-disable-next-line
   }, []);
 
   console.log(users)
